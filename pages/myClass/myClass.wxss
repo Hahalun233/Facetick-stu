@@ -1,0 +1,12 @@
+/* pages/myClass/myClass.wxss */
+.addBtn{
+    position: fixed;
+    
+
+ height:42px;
+
+bottom: 30px;
+
+right: 20px;
+z-index: 5;
+}

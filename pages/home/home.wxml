@@ -1,0 +1,75 @@
+<t-navbar title="Facetick" t-class-title="nav-title" />
+
+<view class='container'>
+  <view class='header'>
+    <van-image round width="6rem" height="6rem" src="{{fileList}}" />
+    <text wx:if="{{stuName}}" style="color:aliceblue">{{stuName}}</text>
+  </view>
+
+
+  <!-- 添加班级弹窗 -->
+  <van-popup show="{{  showGetInfo }}" position="center" bind:close="onClose" round closeable="true" custom-style="height: 70%">
+
+    <view class="continer">
+
+      <view class="upLoader">
+        <van-uploader file-list="{{ fileList }}" max-count="1" bind:after-read="afterRead" upload-text="上传人像" />
+      </view>
+
+
+
+
+
+      <view class="field">
+        <van-cell-group>
+          <van-field model:value="{{ stuName }}" placeholder="请输入真实姓名" clickable="true" required="true" bind:change="onChangeName" />
+          <van-field model:value="{{ stuNo }}" placeholder="请输入学号" clickable="true" required="true" bind:change="onChangeNo"/>
+        </van-cell-group>
+      </view>
+
+
+      <view class="confirmBtn">
+        <van-button type="default" round color="#216BCB" bindtap="upLoadInfo">添加班级</van-button>
+      </view>
+
+
+    </view>
+
+
+  </van-popup>
+
+  <van-cell-group inset>
+    
+    <van-cell clickable title="完善个人信息" bindtap="showPopup"/>
+    <van-cell clickable title="分享给朋友"  />
+    <van-cell clickable title="客服反馈" />
+    <van-cell clickable title="关于" />
+  </van-cell-group>
+
+<!-- 
+  <view>
+    <view class='other'>
+      <view class='share other-item'>
+
+        <button bindtap="showPopup" class='btn' hover-class='none'>
+          <text class='iconfont icon-fenxiang1'></text> 完善个人信息
+        </button>
+      </view>
+      <view class='share other-item'>
+        <button open-type='share' class='btn' hover-class='none'>
+          <text class='iconfont icon-fenxiang1'></text> 分享给朋友
+        </button>
+      </view>
+      <view class='customer other-item'>
+        <button open-type='contact' class='btn' hover-class='none'>
+          <text class='iconfont icon-lianxikefu'></text> 客服反馈
+        </button>
+      </view>
+      <view class='about other-item'>
+        <navigator url='../../subPages/about-page/about-page' hover-class='none'>
+          <text class='iconfont icon-guanyuwomen'></text> 关于
+        </navigator>
+      </view>
+    </view>
+  </view> -->
+</view>
