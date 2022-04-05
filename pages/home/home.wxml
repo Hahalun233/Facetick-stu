@@ -2,7 +2,7 @@
 
 <view class='container'>
   <view class='header'>
-    <van-image round width="6rem" height="6rem" src="{{fileList}}" />
+    <van-image round width="6rem" height="6rem" src="{{fileList[0].url}}" />
     <text wx:if="{{stuName}}" style="color:aliceblue">{{stuName}}</text>
   </view>
 
@@ -13,7 +13,7 @@
     <view class="continer">
 
       <view class="upLoader">
-        <van-uploader file-list="{{ fileList }}" max-count="1" bind:after-read="afterRead" upload-text="上传人像" />
+        <van-uploader file-list="{{ fileList }}" max-count="1" bind:after-read="afterRead" bind:delete="delete" upload-text="上传人像" />
       </view>
 
 
@@ -23,13 +23,13 @@
       <view class="field">
         <van-cell-group>
           <van-field model:value="{{ stuName }}" placeholder="请输入真实姓名" clickable="true" required="true" bind:change="onChangeName" />
-          <van-field model:value="{{ stuNo }}" placeholder="请输入学号" clickable="true" required="true" bind:change="onChangeNo"/>
+          <van-field model:value="{{ stuNo }}" placeholder="请输入学号" clickable="true" required="true" bind:change="onStuChangeNo"/>
         </van-cell-group>
       </view>
 
 
       <view class="confirmBtn">
-        <van-button type="default" round color="#216BCB" bindtap="upLoadInfo">添加班级</van-button>
+        <van-button type="default" round color="#216BCB" bindtap="upLoadInfo">上传信息</van-button>
       </view>
 
 
@@ -38,10 +38,12 @@
 
   </van-popup>
 
+
+
   <van-cell-group inset>
     
-    <van-cell clickable title="完善个人信息" bindtap="showPopup"/>
-    <van-cell clickable title="分享给朋友"  />
+    <van-cell clickable title="完善信息" bindtap="showPopup"/>
+    <van-cell clickable title="加入班级" bind:click="onScanCode" />
     <van-cell clickable title="客服反馈" />
     <van-cell clickable title="关于" />
   </van-cell-group>

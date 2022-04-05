@@ -1,4 +1,5 @@
-const BASE_URL = "http://124.222.177.142:8085/api/v1/sd"
+// const BASE_URL = "http://124.222.177.142:8085/api/v1/sd"
+const BASE_URL = "http://192.168.43.188:8085/api/v1/sd"
 
 class MyRequest {
   request(url, method, params,header) {

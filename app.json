@@ -1,8 +1,7 @@
 {
   "pages":[
     "pages/history/history",
-    "pages/home/home",
-    "pages/myClass/myClass"
+    "pages/home/home"
   ],
   "usingComponents": {
 
@@ -54,12 +53,7 @@
         "iconPath": "/icons/history.png",
         "selectedIconPath": "/icons/history-selected.png"
       },
-      {
-        "pagePath": "pages/myClass/myClass",
-        "text": "班级",
-        "iconPath": "/icons/class-selected.png",
-        "selectedIconPath": "/icons/class.png"
-      },
+      
       {
         "pagePath": "pages/home/home",
         "text": "我的",

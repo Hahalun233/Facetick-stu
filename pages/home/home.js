@@ -10,11 +10,14 @@ Page({
     //是否弹出完善信息界面
     showGetInfo: false,
     //图片路径
-    fileList:[],
+    fileList: [],
     //学生名
     stuName: null,
     //学号
     stuNo: null,
+    //班级id
+    classId: null,
+    
   },
   //弹出层功能
   showPopup() {
@@ -27,7 +30,7 @@ Page({
       showGetInfo: false
     });
 
-    
+
   },
 
 
@@ -38,21 +41,22 @@ Page({
     } = event.detail;
     // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
     wx.uploadFile({
-      url: 'http://192.168.43.188:8085/api/v1/sd/face/upload', // 仅为示例，非真实的接口地址
+
+      url:  'http://192.168.43.188:8085/api/v1/sd/face/upload',
       filePath: file.url,
       name: 'filePic',
       formData: {},
       header: {
-        'token': wx.getStorageSync('token')
+        token: wx.getStorageSync('token')
       },
       success: (res) => {
-       
+
 
         let url = 'fileList[0].url'
         let isImage = 'fileList[0].isImage'
         this.setData({
-          [url]:res.data,
-          [isImage]:true
+          [url]: res.data,
+          [isImage]: true
         })
         // 上传完成需要更新 fileList
         // const { fileList = [] } = this.data;
@@ -62,44 +66,47 @@ Page({
     });
   },
 
-
+  //取消上传
+  delete(event) {
+    this.setData({
+      fileList: []
+    })
+  },
 
   upLoadInfo() {
 
     var token = wx.getStorageSync('token')
-    if(this.data.stuName==null||this.data.stuNo==null){
+    if (this.data.stuName == null || this.data.stuNo == null) {
       wx.showToast({
         title: '请完善个人信息',
         duration: 1500,
         icon: 'error',
       })
-    }else(
+    } else(
 
-      myrequest.post("/url",{
-        url:this.data.filePath,
-        name:stuName,
-        number:stuNo
-      },{
-        token:token
-      }).then(res=>{
-        if(res.code==200){
+      myrequest.post("/student/profile", {
+        url: this.data.fileList[0].url,
+        name: this.data.stuName,
+        number: this.data.stuNo
+      }, {
+        token: token
+      }).then(res => {
+        if (res.code == 200) {
           wx.showToast({
             title: '添加成功',
             duration: 1500,
             icon: 'success',
             image: 'image',
           })
-          this.setData({
-            showGetInfo:false
-          })
+          this.onClose();
         }
       })
     )
 
-    
 
 
-    
+
+
   },
 
 
@@ -111,12 +118,60 @@ Page({
   },
 
 
-  onChangeName(event) {
-    // event.detail 为当前输入的值
+  onStuChangeName(event) {
     this.setData({
       stuName: event.detail
     })
   },
+
+  onScanCode() {
+    var courseId
+    var token = wx.getStorageSync('token')
+    wx.scanCode({
+
+      success: res => {
+
+        courseId = res.result
+        var url = '/course/name/' + res.result
+        myrequest.get(url, {}, {
+          token: token
+        }).then(res => {
+            wx.showModal({
+              title: '提示',
+              content: '是否加入 ' + res.data.teacher + ' 的 ' + res.data.name,
+              success: function (res) {
+                if (res.confirm) {
+                  var url = '/course/join/' + courseId
+                  myrequest.get(url, {}, {
+                    token: token
+                  }).then(res => {
+                    if (res.code == 200) {
+                      wx.showToast({
+                        title: '加入成功',
+                      })
+                    }
+                    console.log(res)
+                  })
+                } else {
+                  console.log('取消')
+                }
+              }
+
+            })
+
+
+          }
+
+        )
+
+
+      }
+    })
+
+  },
+
+
+
 
 
   /**

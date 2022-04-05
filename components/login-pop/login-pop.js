@@ -39,6 +39,9 @@ Component({
 
 
     onGetUserInfo() {
+      wx.showLoading({
+        title: '正在登录',
+      })
 
       wx.login({
         timeout: 3000,
