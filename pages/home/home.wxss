@@ -4,7 +4,12 @@
     background: #f3f3f3;
 }
 
-
+.btn{
+    margin-top: 50rpx;
+}
+.desc{
+    margin-top: 50rpx;
+}
 
 .header {
     border-radius: 35rpx;

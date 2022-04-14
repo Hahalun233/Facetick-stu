@@ -37,6 +37,14 @@ Component({
     },
 
 
+    requestSubscribeMessage(){
+      wx.requestSubscribeMessage({
+          tmplIds: ['mGxTggVFi7YwmiTbVhQAEMa1Bv9EmVcXHOeL3HOPvnc'],
+          success(res) {
+            console.log("可以给用户推送一条通知了。。。",res);
+          }
+  })
+},
 
     onGetUserInfo() {
       wx.showLoading({
@@ -76,7 +84,7 @@ Component({
 
 
       this.onClose()
-     
+     this.requestSubscribeMessage()
 
     },
   }

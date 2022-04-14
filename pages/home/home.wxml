@@ -41,12 +41,37 @@
 
 
   <van-cell-group inset>
-    
+    <van-cell clickable title="登录" bindtap="showLoginPopup" />
     <van-cell clickable title="完善信息" bindtap="showPopup"/>
     <van-cell clickable title="加入班级" bind:click="onScanCode" />
     <van-cell clickable title="客服反馈" />
     <van-cell clickable title="关于" />
   </van-cell-group>
+
+
+  <van-popup show="{{ showLogin }}" closeable round position="bottom" custom-style="height: 30%;" bind:close="onCloseLogin">
+
+
+<view class="desc">
+  <van-cell-group inset>
+    <van-cell title="Facetick请求您的个人信息" label="您的个人信息将用来登录" />
+  </van-cell-group>
+</view>
+
+<view class="btn">
+  <van-row>
+    <van-col span="6" offset="5">
+      <van-button type="default" color="#216BCB" plain round bindtap="onClose">拒绝授权</van-button>
+    </van-col>
+    <van-col span="10" offset="2">
+      <van-button type="default" color="#216BCB" round bindtap="onGetUserInfo">同意授权</van-button>
+
+    </van-col>
+  </van-row>
+</view>
+
+</van-popup>
+
 
 <!-- 
   <view>
