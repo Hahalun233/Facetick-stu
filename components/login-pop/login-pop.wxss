@@ -1,5 +1,4 @@
-/* components/login-pop/login-pop.wxss */
-/* components/login-pop/login-pop.wxss */
+
 .btn{
     margin-top: 50rpx;
 }

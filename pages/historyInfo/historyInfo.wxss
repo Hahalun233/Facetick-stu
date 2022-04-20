@@ -1,0 +1,8 @@
+/* pages/historyInfo/historyInfo.wxss */
+.text{
+    margin-top: 25rpx;
+}
+
+.btn{
+    margin: 25rpx;
+}

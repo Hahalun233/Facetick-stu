@@ -1,1 +1,8 @@
 /* pages/history/history.wxss */
+.btn {
+    margin-top: 50rpx;
+}
+
+.desc {
+    margin-top: 50rpx;
+}

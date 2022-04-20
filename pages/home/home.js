@@ -1,5 +1,6 @@
 // pages/home/home.js
 import myrequest from "../../utils/request";
+const app = getApp();
 
 Page({
 
@@ -36,14 +37,14 @@ Page({
 
 
   afterRead(event) {
-
+    var url = getApp().globalData.baseurl;
     const {
       file
     } = event.detail;
     // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
     wx.uploadFile({
 
-      url:  'http://192.168.43.188:8085/api/v1/sd/face/upload',
+      url:  url+'/face/upload',
       filePath: file.url,
       name: 'filePic',
       formData: {},

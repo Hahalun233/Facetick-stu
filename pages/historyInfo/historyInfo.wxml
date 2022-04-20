@@ -1,0 +1,26 @@
+<!--pages/historyInfo/historyInfo.wxml-->
+<t-navbar title="考勤信息" leftIcon="chevron-left" homeIcon="home" bindgohome="onGoHome" t-class-left-icon="left-icon-back" t-class-home-icon="home-icon" t-class-title="nav-title" />
+<van-cell-group inset>
+    <t-cell class="cell" hover="true" title="{{className}}" description="{{time}}" align="top" t-class-image="title-image-large" image="/icons/classphoto.png" />
+
+</van-cell-group>
+<view class="text">
+</view>
+<van-cell-group inset>
+    <van-field label="课程名称:" placeholder="{{className}}" readonly />
+    <van-field label="考勤地点:" placeholder="{{classRoom}}" readonly />
+    <van-field label="考勤时间:" placeholder="{{time}}" readonly />
+    <van-field label="考勤结果:" placeholder="{{end}}" readonly />
+    <view wx:if="{{ !result }}">
+        <van-field label="申诉状态:" placeholder="{{appeal}}" readonly />
+    </view>
+</van-cell-group>
+
+
+
+<view wx:if="{{ !result }}" class="btn">
+    <van-button round size="large" type="info" bindtap="showAppealPop">申诉</van-button>
+
+</view>
+
+

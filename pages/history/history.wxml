@@ -6,11 +6,32 @@
 <!-- 判断登录状态 -->
 <view wx:if="{{ !isLogin }}">
   <!-- 弹出登录申请 -->
-  <login-pop></login-pop>
+  <van-popup show="{{ show }}" closeable round position="bottom" custom-style="height: 30%;" bind:close="onClose">
+
+
+<view class="desc">
+  <van-cell-group inset>
+    <van-cell title="Facetick请求您的个人信息" label="您的个人信息将用来登录" />
+  </van-cell-group>
+</view>
+
+<view class="btn">
+  <van-row>
+    <van-col span="6" offset="5">
+      <van-button type="default" color="#216BCB" plain round bindtap="onClose">拒绝授权</van-button>
+    </van-col>
+    <van-col span="10" offset="2">
+      <van-button type="default" color="#216BCB" round bindtap="onGetUserInfo">同意授权</van-button>
+
+    </van-col>
+  </van-row>
+</view>
+
+
+</van-popup>
+
 </view>
 
 
 
-
-<van-search value="{{ value }}" placeholder="请输入搜索关键词" bind:change="onChange" bind:search="onSearch" />
-<van-button bindtap="requestSubscribeMessage">授权通知</van-button>
+<t-cell class="cell" wx:for="{{classList}}" hover="true" title="{{item.courseName}}" description="{{item.date}}" align="top" t-class-image="title-image-large" image="/icons/classphoto.png" url="/pages/historyInfo/historyInfo?className={{item.courseName}}&time={{item.date}}&courseId={{item.id}}&result={{item.status}}&classRoom={{item.room}}" />

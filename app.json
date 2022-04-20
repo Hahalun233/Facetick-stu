@@ -1,14 +1,12 @@
 {
   "pages":[
     "pages/history/history",
-    "pages/home/home"
+    "pages/home/home",
+    "pages/historyInfo/historyInfo"
   ],
   "usingComponents": {
 
     "login-pop":"/components/login-pop/login-pop",
-
-
-
     "t-tab-bar": "tdesign-miniprogram/tab-bar/tab-bar",
     "t-tab-bar-item": "tdesign-miniprogram/tab-bar/tab-bar-item",
     "t-navbar": "tdesign-miniprogram/navbar/navbar",
