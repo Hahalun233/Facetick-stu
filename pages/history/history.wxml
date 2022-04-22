@@ -9,29 +9,33 @@
   <van-popup show="{{ show }}" closeable round position="bottom" custom-style="height: 30%;" bind:close="onClose">
 
 
-<view class="desc">
-  <van-cell-group inset>
-    <van-cell title="Facetick请求您的个人信息" label="您的个人信息将用来登录" />
-  </van-cell-group>
+    <view class="desc">
+      <van-cell-group inset>
+        <van-cell title="Facetick请求您的个人信息" label="您的个人信息将用来登录" />
+      </van-cell-group>
+    </view>
+
+    <view class="btn">
+      <van-row>
+        <van-col span="6" offset="5">
+          <van-button type="default" color="#216BCB" plain round bindtap="onClose">拒绝授权</van-button>
+        </van-col>
+        <van-col span="10" offset="2">
+          <van-button type="default" color="#216BCB" round bindtap="onGetUserInfo">同意授权</van-button>
+
+        </van-col>
+      </van-row>
+    </view>
+
+
+  </van-popup>
+
 </view>
 
-<view class="btn">
-  <van-row>
-    <van-col span="6" offset="5">
-      <van-button type="default" color="#216BCB" plain round bindtap="onClose">拒绝授权</van-button>
-    </van-col>
-    <van-col span="10" offset="2">
-      <van-button type="default" color="#216BCB" round bindtap="onGetUserInfo">同意授权</van-button>
 
-    </van-col>
-  </van-row>
+
+<view class="scrollBox">
+  <scroll-view scroll-y class="scroll" bindscrolltolower="lowerFunction">
+    <t-cell class="cell" wx:for="{{classList}}" hover="true" title="{{item.courseName}}" description="{{item.date}}" align="top" t-class-image="title-image-large" image="/icons/classphoto.png" url="/pages/historyInfo/historyInfo?className={{item.courseName}}&time={{item.date}}&courseId={{item.id}}&result={{item.status}}&classRoom={{item.room}}" />
+  </scroll-view>
 </view>
-
-
-</van-popup>
-
-</view>
-
-
-
-<t-cell class="cell" wx:for="{{classList}}" hover="true" title="{{item.courseName}}" description="{{item.date}}" align="top" t-class-image="title-image-large" image="/icons/classphoto.png" url="/pages/historyInfo/historyInfo?className={{item.courseName}}&time={{item.date}}&courseId={{item.id}}&result={{item.status}}&classRoom={{item.room}}" />

@@ -11,14 +11,14 @@
     <van-field label="考勤地点:" placeholder="{{classRoom}}" readonly />
     <van-field label="考勤时间:" placeholder="{{time}}" readonly />
     <van-field label="考勤结果:" placeholder="{{end}}" readonly />
-    <view wx:if="{{ !result }}">
+    <view wx:if="{{ !showAppealText}}">
         <van-field label="申诉状态:" placeholder="{{appeal}}" readonly />
     </view>
 </van-cell-group>
 
 
 
-<view wx:if="{{ !result }}" class="btn">
+<view wx:if="{{ !showAppealBtn }}" class="btn">
     <van-button round size="large" type="info" bindtap="showAppealPop">申诉</van-button>
 
 </view>

@@ -18,7 +18,7 @@ Page({
         pageNumber: 1,
         //是否是最后一页
         isLast: false,
-       
+
 
 
 
@@ -74,7 +74,7 @@ Page({
             })
             setTimeout(() => {
                 this.reFreshClass()
-            }, 2000)
+            }, 3000)
 
         }, 1000)
 
@@ -129,7 +129,7 @@ Page({
             isloading: true
         })
         const token = wx.getStorageSync('token')
-        const url = "/record/list/" + this.data.pageNumber + "/8"
+        const url = "/record/list/" + this.data.pageNumber + "/12"
         myrequest.get(url, {}, {
             token: token
         }).then(res => {
@@ -148,13 +148,13 @@ Page({
                 classList: newClassList
             })
 
-           
+
         })
 
     },
 
     reFreshClass() {
-     
+
         //若没有登录，拒绝请求数据
         if (this.isLogin) {
             wx.showToast({
@@ -170,7 +170,7 @@ Page({
             pageNumber: "1"
         })
         const token = wx.getStorageSync('token')
-        const url = "/record/list/" + this.data.pageNumber + "/8"
+        const url = "/record/list/" + this.data.pageNumber + "/12"
         myrequest.get(url, {}, {
             token: token
         }).then(res => {
@@ -178,7 +178,7 @@ Page({
             this.setData({
                 classList: res.data.list
             })
-           
+
         })
 
     },
@@ -240,13 +240,26 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-        
+
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function () {
+    // onReachBottom: function () {
+    //     if (this.data.isLast == true) {
+    //         return
+    //     }
+    //     this.setData({
+
+    //         pageNumber: parseInt(this.data.pageNumber) + parseInt(1),
+
+    //     })
+
+    //     this.getClass()
+    // },
+
+    lowerFunction() {
         if (this.data.isLast == true) {
             return
         }
@@ -258,7 +271,6 @@ Page({
 
         this.getClass()
     },
-
     /**
      * 用户点击右上角分享
      */

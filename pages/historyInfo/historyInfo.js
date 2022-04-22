@@ -12,9 +12,11 @@ Page({
         courseId: null,
         token: null,
         classRoom: "教室",
-        result:false,
-        end:null,
         id:null,
+        showAppealText:false,
+        showAppealBtn:false,
+        end:null,
+        
         appeal:"未申诉",
     },
 
@@ -60,24 +62,33 @@ Page({
             
             
         })
+        // 出勤
         if(options.result=='1'){
             
             this.setData({
-                result: true,
+                showAppealBtn: false,
+                showAppealText:false,
                 end: "已到"
             })
         }
+        //缺勤且已申诉
         if(options.result=='2'){
             
             this.setData({
-                result: false,
-                appeal:"已申诉"
+                showAppealBtn:false,
+                showAppealText:true,
+                
+                appeal:"已申诉",
+                end: "未到"
             })
         }
+        // 缺勤且未申诉
         if(options.result=='0'){
             
             this.setData({
-                result: false,
+                showAppealBtn:true,
+                showAppealText:true,
+             
                 end: "未到"
             })
         }

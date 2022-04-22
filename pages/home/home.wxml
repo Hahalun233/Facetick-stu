@@ -2,12 +2,12 @@
 
 <view class='container'>
   <view class='header'>
-    <van-image round width="6rem" height="6rem" src="{{fileList[0].url}}" />
+    <van-image round width="6rem" height="6rem" src="{{fileList}}" />
     <text wx:if="{{stuName}}" style="color:aliceblue">{{stuName}}</text>
   </view>
 
 
-  <!-- 添加班级弹窗 -->
+  <!-- 完善信息弹窗 -->
   <van-popup show="{{  showGetInfo }}" position="center" bind:close="onClose" round closeable="true" custom-style="height: 70%">
 
     <view class="continer">

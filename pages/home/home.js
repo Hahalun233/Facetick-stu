@@ -18,8 +18,9 @@ Page({
     stuNo: null,
     //班级id
     classId: null,
-    
-    showLogin:false
+
+    showLogin: false,
+    token: null
   },
   //弹出层功能
   showPopup() {
@@ -31,8 +32,6 @@ Page({
     this.setData({
       showGetInfo: false
     });
-
-
   },
 
 
@@ -44,7 +43,7 @@ Page({
     // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
     wx.uploadFile({
 
-      url:  url+'/face/upload',
+      url: url + '/face/upload',
       filePath: file.url,
       name: 'filePic',
       formData: {},
@@ -111,20 +110,20 @@ Page({
 
   },
 
-  showLoginPopup(){
+  showLoginPopup() {
     this.setData({
-        showLogin:true
+      showLogin: true
     })
-},
+  },
 
-onCloseLogin(){
+  onCloseLogin() {
     this.setData({
-        showLogin:false
+      showLogin: false
     })
-},
+  },
 
 
-onGetUserInfo() {
+  onGetUserInfo() {
     wx.showLoading({
       title: '正在登陆',
     })
@@ -134,8 +133,8 @@ onGetUserInfo() {
         // 2. 小程序通过wx.request()发送code到开发者服务器
         myrequest.post("/login", {
           code: login_res.code, //临时登录凭证
-          
-        },{
+
+        }, {
           'content-type': 'application/x-www-form-urlencoded'
         }).then(hres => {
           if (hres.code == 200) {
@@ -148,7 +147,7 @@ onGetUserInfo() {
               duration: 1500,
             })
           }
-          
+
           wx.showToast({
             title: '登录成功',
             duration: 1500,
@@ -162,7 +161,7 @@ onGetUserInfo() {
 
 
     this.onCloseLogin()
-   
+
 
   },
 
@@ -229,11 +228,28 @@ onGetUserInfo() {
 
 
 
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      token: wx.getStorageSync('token')
+    })
+
+    var url = "/student/profile"
+    myrequest.get(url, {}, {
+      token: this.data.token
+    }).then(res => {
+      if (res.code == "200") {                           
+        console.log("info", res)
+        this.setData({
+          fileList: res.data.avatar,
+          stuName: res.data.name
+        })
+      }
+
+    })
+
 
   },
 
